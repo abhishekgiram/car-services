@@ -1,29 +1,29 @@
 <div class="container">
 <tr>
 <th class="th1">
-<div class="card" >
+<div class="card" (click)="detail('ABC',500)">
     <img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/car-512.png" alt="Avatar" style="width:10%">
     <div class="container1">
-      <h4><b>John Doe</b></h4> 
-      <p>Architect & Engineer</p> 
+      <h4><b>ABC</b></h4> 
+      <p>500 Rs.</p> 
     </div>
   </div>    
 </th>
 <th class="th2">
-  <div class="card ">
+  <div class="card" (click)="detail('PQR',300)">
     <img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/car-512.png" alt="Avatar" style="width:10%">
     <div class="container1">
-      <h4><b>John Doe</b></h4> 
-      <p>Architect & Engineer</p> 
+      <h4><b>PQR</b></h4> 
+      <p>300 Rs.</p> 
     </div>
   </div>    
 </th>
 <th class="th3"> 
-  <div class="card" >
+  <div class="card" (click)="detail('XYZ',600)">
     <img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/car-512.png" alt="Avatar" style="width:10%">
     <div class="container1">
-      <h4><b>John Doe</b></h4> 
-      <p>Architect & Engineer</p> 
+      <h4><b>XYZ</b></h4> 
+      <p>600 Rs.</p> 
     </div>
   </div>    
 </th>
@@ -89,5 +89,5 @@
           </div>    
         </th>
         </tr>
-        
+        <button routerLinkActive="active" class="continue" routerLink="/Services">Continue</button>
 </div>
