@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-
+import {ServicesService} from './services.service'
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent implements OnInit {
-  public Price:any=[];
-  public Service:any=[];
-  constructor() { }
+
+  public Services:any=[];
+  constructor( public serviceservice : ServicesService) { }
 
   ngOnInit(): void {
   
     
   }
   detail=(service,price)=>{
-    this.Price.push(price);
-    this.Service.push(service);
 
-    console.log('detail', [this.Price, this.Service]);
+    this.Services.push(service);
+    this.Services.push(price);
+
+    this.serviceservice.setArrData(this.Services);
+    console.log('detail',  this.Services);
   }
 }
