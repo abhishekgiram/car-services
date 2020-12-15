@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "car-service"
+    }
+  },
+  "defaultProject": "car-service",
+  "cli": {
+    "analytics": false
+  }
 }
