@@ -1,1 +1,33 @@
-<p>car-size works!</p>
+<div class="container">
+    <tr>
+    <th class="th1">
+    <div class="card" (click)="detail('small',100)">
+        <img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/car-512.png" alt="Avatar" style="width:10%">
+        <div class="container1">
+          <h4><b>Small</b></h4>  
+        </div>
+      </div>    
+    </th>
+    <th class="th2">
+      <div class="card" (click)="detail('medium',200)">
+        <img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/car-512.png" alt="Avatar" style="width:10%">
+        <div class="container1">
+          <h4><b>Medium</b></h4>  
+        </div>
+      </div>    
+    </th>
+    <th class="th3"> 
+      <div class="card" (click)="detail('large',300)">
+        <img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/car-512.png" alt="Avatar" style="width:10%">
+        <div class="container1">
+          <h4><b>large</b></h4> 
+        </div>
+      </div>    
+    </th>
+    </tr>
+    <button class="continue" (click)="btnClick();">
+        Continue
+    </button>
+   
+</div>  
+
